@@ -1,4 +1,4 @@
-package com.example.web_ban_quan_ao;
+package com.example.web_ban_quan_ao.Service;
 
 import java.io.*;
 import javax.servlet.http.*;
