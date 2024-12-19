@@ -1,18 +1,18 @@
 package com.example.web_ban_quan_ao.Controller;
 
-import com.example.web_ban_quan_ao.Service.HelloServlet;
 import com.example.web_ban_quan_ao.Service.Login.LoginImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", value = "/loginServlet")
-public class LoginServlet extends HelloServlet {
+public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginImpl loginImpl;
 
@@ -28,7 +28,6 @@ public class LoginServlet extends HelloServlet {
     private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        System.out.println(username + " " + password);
         String[] loginInfo = loginImpl.checkLoginDB(username, password);
 
         if (loginInfo != null) {
@@ -40,24 +39,51 @@ public class LoginServlet extends HelloServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("full/home_admin.jsp");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_admin.jsp");
                     dispatcher.forward(req, resp);
                 } else if (role.equalsIgnoreCase("user")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("full/home_user.jsp");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_user.jsp");
                     dispatcher.forward(req, resp);
-                }
-                else {
-                    System.out.println("bị ban rồi");
+                } else {
+                    req.setAttribute("errorMessage", "Tài khoản bị khóa!");
+                    req.getRequestDispatcher("view/login.jsp").forward(req, resp);
                 }
             }
-        }
-        else {
-            System.out.println("error ???");
+        } else {
+            req.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu, vui lòng đăng nhập lại!");
+            req.getRequestDispatcher("view/login.jsp").forward(req, resp);
         }
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
 
+        try {
+            switch (action) {
+                case "register":
+                    registerView(req, resp);
+                    System.out.println(action);
+                    break;
+                default:
+                    loginView(req, resp);
+                    break;
+            }
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void registerView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/register.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void loginView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
+        dispatcher.forward(req, resp);
     }
 }
