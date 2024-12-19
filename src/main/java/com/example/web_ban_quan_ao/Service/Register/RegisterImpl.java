@@ -1,12 +1,13 @@
 package com.example.web_ban_quan_ao.Service.Register;
 
+import com.example.web_ban_quan_ao.ConnectionDB.ConnectionDB;
 import com.example.web_ban_quan_ao.Service.ConnectDB;
 
 import java.sql.*;
 
 public class RegisterImpl implements RegisterService {
 
-    private ConnectDB connectDB = new ConnectDB();
+    ConnectionDB connectionDB = new ConnectionDB();
     private final String register = "insert into users (username, password, name, role, status) values (?,?,?,?,?)";
     private final String checkUser = "select * from users where username = ?";
 
@@ -15,7 +16,7 @@ public class RegisterImpl implements RegisterService {
     }
 
     public boolean registerUser(String username, String password, String uFullname) {
-        Connection connection = connectDB.getConnection();
+        Connection connection = connectionDB.getConnection();
         PreparedStatement preparedStatement;
 
         if (checkUsername(username)) {
@@ -45,7 +46,7 @@ public class RegisterImpl implements RegisterService {
 
     @Override
     public boolean checkUsername(String username) {
-        Connection connection = connectDB.getConnection();
+        Connection connection = connectionDB.getConnection();
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(checkUser);

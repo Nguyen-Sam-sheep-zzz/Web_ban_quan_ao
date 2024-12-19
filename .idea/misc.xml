@@ -4,11 +4,9 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
-=======
+
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="corretto-21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
->>>>>>> cbc2467f4f09ef1ccde954abdadbc13d793ffd5f
+
 </project>
