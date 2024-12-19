@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeAdminServlet", urlPatterns = {"/home_admin"})
+@WebServlet(name = "HomeAdminServlet", value = "/home_admin")
 public class HomeAdminServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DAO dao = new DAO();
@@ -48,7 +48,7 @@ public class HomeAdminServlet extends HttpServlet {
         switch (action) {
             case "logout":
                 request.getSession().invalidate();
-                RequestDispatcher dispatcher = request.getRequestDispatcher("view/login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/loginServlet");
                 dispatcher.forward(request, response);
                 break;
         }

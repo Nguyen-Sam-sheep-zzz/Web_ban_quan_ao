@@ -16,42 +16,40 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                            <form action="loginServlet" method="post">
+                            <form action="registerServlet" method="post">
+
+                                <div class="alert alert-danger" role="alert"
+                                     style="display: ${not empty errorMessage ? 'block' : 'none'};">
+                                    ${errorMessage}
+                                </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name= "username"/>
                                     <label class="form-label" for="form3Example1cg">Your Username</label>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="text" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <input type="text" id="form3Example3cg" class="form-control form-control-lg" name="fullname" />
                                     <label class="form-label" for="form3Example3cg">Your full name</label>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="password" />
                                     <label class="form-label" for="form3Example4cg">Password</label>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="Rpassword"/>
                                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                 </div>
 
-<%--                                <div class="form-check d-flex justify-content-center mb-5">--%>
-<%--                                    &lt;%&ndash;@declare id="form2example3g"&ndash;%&gt;<input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />--%>
-<%--                                    <label class="form-check-label" for="form2Example3g">--%>
-<%--                                        I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>--%>
-<%--                                    </label>--%>
-<%--                                </div>--%>
-
                                 <div class="d-flex justify-content-center">
-                                    <button  type="button" data-mdb-button-init
+                                    <button  type="submit" data-mdb-button-init
                                              data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                                                                                                        class="fw-bold text-body"><u>Login here</u></a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/registerServlet?action=login"
+                                                                                                        class="fw-bold text-body">Login here</a></p>
                             </form>
                         </div>
                     </div>

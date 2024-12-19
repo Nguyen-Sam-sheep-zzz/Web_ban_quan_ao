@@ -1,13 +1,11 @@
 package com.example.web_ban_quan_ao.Service.Login;
 
+import com.example.web_ban_quan_ao.ConnectionDB.ConnectionDB;
+import com.example.web_ban_quan_ao.Service.ConnectDB;
+
 import java.sql.*;
 
 public class LoginImpl implements LoginService {
-    private String url = "jdbc:mysql://localhost:3306/Web_ban_quan_ao?useSSL=true&serverTimezone=UTC";
-
-    private String jdbcUsername = "root";
-//    private String jdbcPassword = "123456";
-    private String jdbcPassword = "khanhanhanmiu";
 
     private static final String loginCheck = "select * from users where LOWER(username) = LOWER(?) and password = ?";
 
@@ -15,22 +13,12 @@ public class LoginImpl implements LoginService {
 
     }
 
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return connection;
-    }
+    private ConnectionDB connectDB = new ConnectionDB();
 
     @Override
     public String[] checkLoginDB(String username, String password) {
-        Connection connection = getConnection();
+        Connection connection = connectDB.getConnection();
+        System.out.println(connection);
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(loginCheck);
