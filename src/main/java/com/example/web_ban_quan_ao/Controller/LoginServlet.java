@@ -1,18 +1,18 @@
 package com.example.web_ban_quan_ao.Controller;
 
-import com.example.web_ban_quan_ao.Service.HelloServlet;
 import com.example.web_ban_quan_ao.Service.Login.LoginImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", value = "/loginServlet")
-public class LoginServlet extends HelloServlet {
+public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginImpl loginImpl;
 

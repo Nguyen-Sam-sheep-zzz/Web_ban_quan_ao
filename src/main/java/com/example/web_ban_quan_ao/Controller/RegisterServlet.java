@@ -1,18 +1,17 @@
 package com.example.web_ban_quan_ao.Controller;
 
-import com.example.web_ban_quan_ao.Service.HelloServlet;
-import com.example.web_ban_quan_ao.Service.Login.LoginImpl;
 import com.example.web_ban_quan_ao.Service.Register.RegisterImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet", value = "/registerServlet")
-public class RegisterServlet extends HelloServlet {
+public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private RegisterImpl registerImpl;
 

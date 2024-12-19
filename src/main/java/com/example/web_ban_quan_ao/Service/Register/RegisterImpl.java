@@ -1,13 +1,12 @@
 package com.example.web_ban_quan_ao.Service.Register;
 
+import com.example.web_ban_quan_ao.Service.ConnectDB;
+
 import java.sql.*;
 
 public class RegisterImpl implements RegisterService {
-    private String url = "jdbc:mysql://localhost:3306/Web_ban_quan_ao?useSSL=true&serverTimezone=UTC";
 
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "123456";
-
+    private ConnectDB connectDB = new ConnectDB();
     private final String register = "insert into users (username, password, name, role, status) values (?,?,?,?,?)";
     private final String checkUser = "select * from users where username = ?";
 
@@ -15,21 +14,8 @@ public class RegisterImpl implements RegisterService {
 
     }
 
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return connection;
-    }
-
     public boolean registerUser(String username, String password, String uFullname) {
-        Connection connection = getConnection();
+        Connection connection = connectDB.getConnection();
         PreparedStatement preparedStatement;
 
         if (checkUsername(username)) {
@@ -59,7 +45,7 @@ public class RegisterImpl implements RegisterService {
 
     @Override
     public boolean checkUsername(String username) {
-        Connection connection = getConnection();
+        Connection connection = connectDB.getConnection();
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(checkUser);
