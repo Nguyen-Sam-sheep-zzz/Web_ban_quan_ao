@@ -6,7 +6,8 @@ public class LoginImpl implements LoginService {
     private String url = "jdbc:mysql://localhost:3306/Web_ban_quan_ao?useSSL=true&serverTimezone=UTC";
 
     private String jdbcUsername = "root";
-    private String jdbcPassword = "123456";
+//    private String jdbcPassword = "123456";
+    private String jdbcPassword = "khanhanhanmiu";
 
     private static final String loginCheck = "select * from users where LOWER(username) = LOWER(?) and password = ?";
 

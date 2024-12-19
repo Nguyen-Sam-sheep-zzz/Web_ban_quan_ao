@@ -1,5 +1,6 @@
 package com.example.web_ban_quan_ao.Controller;
 
+import com.example.web_ban_quan_ao.Service.Admin.DAO;
 import com.example.web_ban_quan_ao.Service.HelloServlet;
 import com.example.web_ban_quan_ao.Service.Login.LoginImpl;
 
@@ -19,7 +20,7 @@ public class LoginServlet extends HelloServlet {
     public void init() {
         loginImpl = new LoginImpl();
     }
-
+    private DAO dao = new DAO();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         handleLogin(req, resp);
@@ -40,10 +41,12 @@ public class LoginServlet extends HelloServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("full/home_admin.jsp");
+                    req.setAttribute("productList", dao.getAllProduct());
+                    System.out.println(dao.getAllProduct());
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_admin.jsp");
                     dispatcher.forward(req, resp);
                 } else if (role.equalsIgnoreCase("user")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("full/home_user.jsp");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_user.jsp");
                     dispatcher.forward(req, resp);
                 }
                 else {

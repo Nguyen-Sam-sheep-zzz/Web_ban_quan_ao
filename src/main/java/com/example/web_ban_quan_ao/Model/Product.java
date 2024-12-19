@@ -45,11 +45,11 @@ public class Product {
         this.descriptionProduct = descriptionProduct;
     }
 
-    public String getColor() {
+    public String getSize() {
         return size;
     }
 
-    public void setColor(String size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -83,7 +83,7 @@ public class Product {
                 "idProduct=" + idProduct +
                 ", nameProduct='" + nameProduct + '\'' +
                 ", descriptionProduct='" + descriptionProduct + '\'' +
-                ", color='" + size + '\'' +
+                ", size='" + size + '\'' +
                 ", price=" + price +
                 ", status='" + status + '\'' +
                 ", quantity=" + quantity +
