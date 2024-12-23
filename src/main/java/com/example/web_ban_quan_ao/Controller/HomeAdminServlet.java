@@ -2,6 +2,7 @@ package com.example.web_ban_quan_ao.Controller;
 
 import com.example.web_ban_quan_ao.Model.Product;
 import com.example.web_ban_quan_ao.Service.Admin.DAO;
+import com.example.web_ban_quan_ao.Service.HomeUser.HomeUserImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.util.List;
 @WebServlet(name = "HomeAdminServlet", value = "/home_admin")
 public class HomeAdminServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private DAO dao = new DAO();
+    private HomeUserImpl homeUserImpl = new HomeUserImpl();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
@@ -55,8 +56,9 @@ public class HomeAdminServlet extends HttpServlet {
     }
 
     private void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = new DAO().getAllProduct();
+        List<Product> products = new HomeUserImpl().getAllProductDisplayUser();
         request.setAttribute("productList", products);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
         dispatcher.forward(request, response);
     }

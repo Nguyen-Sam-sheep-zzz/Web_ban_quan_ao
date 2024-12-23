@@ -39,9 +39,9 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect("/home_admin");
+                    resp.sendRedirect("/homeAdminServlet");
                 } else if (role.equalsIgnoreCase("user")) {
-                    resp.sendRedirect("/home_user");
+                    resp.sendRedirect("/homeUserServlet");
                 } else {
                     req.setAttribute("errorMessage", "Tài khoản bị khóa!");
                     req.getRequestDispatcher("view/login.jsp").forward(req, resp);
@@ -62,6 +62,9 @@ public class LoginServlet extends HttpServlet {
 
         try {
             switch (action) {
+                case "login":
+                    loginView(req, resp);
+                    break;
                 case "register":
                     registerView(req, resp);
                     break;

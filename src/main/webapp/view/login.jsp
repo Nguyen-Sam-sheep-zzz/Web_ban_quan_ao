@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <%--    <link rel="stylesheet" href="/CSS/register.css">--%>
+    <link rel="stylesheet" href="/CSS/register.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
 </head>
 <body>
