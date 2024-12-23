@@ -13,8 +13,12 @@ public class DAO implements IDAO {
     ConnectionDB connectionDB = new ConnectionDB();
     private String get_all_product = "select * from web_ban_quan_ao.products";
     private String add_product = "insert into products (nameProduct, productDescription, size, price, status, quantity) values (?, ?, ?, ?, ?, ?)";
+    private String add_img = "insert into images (link, idProduct) values (?, ?)";
+    private String update_img = "update images set link = ? where idProduct = ?";
     private String update_product = "update products set nameProduct = ?, productDescription = ?, size = ?, price = ?, status = ?, quantity = ? where idProduct = ?";
     private String delete_product = "delete from products where idProduct = ?";
+    private String get_product_by_id = "select * from products where idProduct = ?";
+    private String get_product_by_name = "select * from products where nameProduct LIKE '%' ? '%'";
 
     @Override
     public List<Product> getAllProduct() {
@@ -33,7 +37,8 @@ public class DAO implements IDAO {
                 double price = resultSet.getDouble("price");
                 String status = resultSet.getString("status");
                 int quantity = resultSet.getInt("quantity");
-                Product product = new Product(idProduct, nameProduct, descriptionProduct, size, price, status, quantity);
+                String type = resultSet.getString("category");
+                Product product = new Product(idProduct, nameProduct, descriptionProduct, size, price, status, quantity, type);
                 products.add(product);
             }
             return products;
@@ -55,6 +60,15 @@ public class DAO implements IDAO {
             preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.setString(5, product.getStatus());
             preparedStatement.setInt(6, product.getQuantity());
+            preparedStatement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection connection = connectionDB.getConnection();
+            preparedStatement = connection.prepareStatement(add_img);
+            preparedStatement.setString(2, product.getImage());
+            preparedStatement.setInt(1, product.getIdProduct());
             preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,5 +105,58 @@ public class DAO implements IDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        Product product = new Product();
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectionDB.getConnection();
+            preparedStatement = connection.prepareStatement(get_product_by_id);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                String nameProduct = resultSet.getString("nameProduct");
+                String descriptionProduct = resultSet.getString("productDescription");
+                String size = resultSet.getString("size");
+                double price = resultSet.getDouble("price");
+                String status = resultSet.getString("status");
+                int quantity = resultSet.getInt("quantity");
+                String type = resultSet.getString("category");
+                product = new Product(id, nameProduct, descriptionProduct, size, price, status, quantity, type);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    @Override
+    public Product getProductByName(String name) {
+        Product product = new Product();
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectionDB.getConnection();
+            preparedStatement = connection.prepareStatement(get_product_by_name);
+            preparedStatement.setString(1, name);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int idProduct = resultSet.getInt("idProduct");
+                String nameProduct = resultSet.getString("nameProduct");
+                String descriptionProduct = resultSet.getString("productDescription");
+                String size = resultSet.getString("size");
+                double price = resultSet.getDouble("price");
+                String status = resultSet.getString("status");
+                int quantity = resultSet.getInt("quantity");
+                String type = resultSet.getString("category");
+                product = new Product(idProduct, nameProduct, descriptionProduct, size, price, status, quantity, type);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 }

@@ -32,7 +32,7 @@
 
     <main class="main-content">
         <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm..." />
+            <input type="text" placeholder="Tìm kiếm..."/>
             <button>Tìm kiếm</button>
         </div>
         <section class="recent-orders">
@@ -47,6 +47,7 @@
                     <th>Price</th>
                     <th>Status</th>
                     <th>Quantity</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
 
@@ -59,6 +60,17 @@
                         <td>${product.price}</td>
                         <td>${product.status}</td>
                         <td>${product.quantity}</td>
+                        <td class="actions">
+                            <a href="/home_admin?action=edit&id=${product.idProduct}">
+                                Edit
+                            </a>
+                            <a href="/home_admin?action=add&id=${product.idProduct}">
+                                Add
+                            </a>
+                            <a href="/home_admin?action=delete&id=${product.idProduct}">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
                 </c:forEach>
 

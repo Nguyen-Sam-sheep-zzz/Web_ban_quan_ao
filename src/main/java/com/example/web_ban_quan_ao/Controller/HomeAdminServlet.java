@@ -31,6 +31,9 @@ public class HomeAdminServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("view/login.jsp");
                 dispatcher.forward(request, response);
                 break;
+            case "add":
+                ShowAddProduct(request, response);
+                break;
             default:
                 productList(request, response);
                 break;
@@ -41,17 +44,45 @@ public class HomeAdminServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher dispatcher;
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         switch (action) {
+            case "add":
+                addProduct(request, response);
+                break;
             case "logout":
                 request.getSession().invalidate();
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/loginServlet");
+                dispatcher = request.getRequestDispatcher("/loginServlet");
                 dispatcher.forward(request, response);
                 break;
         }
+    }
+
+    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("nameProduct");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String description = request.getParameter("descriptionProduct");
+        String size = request.getParameter("size");
+        String status = "";
+        if (quantity <= 0) {
+            status = "Out of stock";
+        } else {
+            status = "Available";
+        }
+        String image = request.getParameter("image");
+        String type = request.getParameter("type");
+        Product product = new Product(name, description, size, price, status, quantity, image, type);
+        dao.addProduct(product);
+        productList(request, response);
+    }
+
+    private void ShowAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/add_product.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

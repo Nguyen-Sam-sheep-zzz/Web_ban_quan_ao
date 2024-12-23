@@ -8,7 +8,10 @@ public class Product {
     private double price;
     private String status;
     private int quantity;
-    public Product(int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity) {
+    private String image;
+    private String type;
+
+    public Product(int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String type) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
@@ -16,6 +19,28 @@ public class Product {
         this.price = price;
         this.status = status;
         this.quantity = quantity;
+        this.type = type;
+    }
+
+    public Product( String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String type) {
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.image = image;
+        this.type = type;
+    }
+
+    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String type) {
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.type = type;
     }
 
     public Product() {
@@ -77,6 +102,14 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -89,4 +122,6 @@ public class Product {
                 ", quantity=" + quantity +
                 '}';
     }
+
+
 }
