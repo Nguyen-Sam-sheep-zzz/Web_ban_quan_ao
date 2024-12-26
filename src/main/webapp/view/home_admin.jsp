@@ -37,7 +37,7 @@
 <header class="header">
     <h1>Admin Dashboard</h1>
     <div class="add-product">
-        <a href="/home_admin?action=add">Add new Product</a>
+        <a href="home_admin_product?action=add">Add new Product</a>
     </div>
 </header>
 
@@ -49,18 +49,16 @@
             <li><a href="#">Users Management</a></li>
             <li><a href="#">Orders Management</a></li>
             <li><a href="#">Cart Management</a></li>
-            <li><a href="/home_admin?action=logout">Log out</a></li>
+            <li><a href="home_admin_product?action=logout">Log out</a></li>
         </ul>
     </nav>
 </aside>
 
 <main class="main-content">
     <div class="search-bar">
-        <form action="home_admin?action=search" method="post">
+        <form action="home_admin_product?action=search" method="post">
             <input type="text" name="search" placeholder="Tìm kiếm..."/>
-<%--            <a href="home_admin?action=search">--%>
-                <button>Search</button>
-<%--            </a>--%>
+            <button>Search</button>
         </form>
     </div>
     <section class="recent-orders">
@@ -92,7 +90,7 @@
                     <td>${product.quantity}</td>
                     <td>${product.choice}</td>
                     <td class="actions">
-                        <a href="/home_admin?action=edit&id=${product.idProduct}">
+                        <a href="home_admin_product?action=edit&id=${product.idProduct}">
                             Edit the product
                         </a>
                     </td>

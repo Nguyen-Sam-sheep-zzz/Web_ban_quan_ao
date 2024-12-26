@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect("/home_admin");
+                    resp.sendRedirect("/home_admin_product");
                 } else if (role.equalsIgnoreCase("user")) {
                     resp.sendRedirect("/home_user");
                 } else {

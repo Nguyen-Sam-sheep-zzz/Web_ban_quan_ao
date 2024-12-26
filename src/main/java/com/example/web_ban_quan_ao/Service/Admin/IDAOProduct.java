@@ -8,7 +8,6 @@ public interface IDAOProduct {
     List<Product> getAllProduct();
     void addProduct(Product product);
     void updateProduct(Product product);
-    void deleteProduct(int id);
     Product getProductById(int id);
     List<Product> getProductByName(String name);
 }

@@ -12,7 +12,7 @@
 <header class="header">
     <h1>Admin Dashboard</h1>
     <div class="add-product">
-        <a href="/home_admin?action=leave">leave the activity</a>
+        <a href="home_admin_product?action=leave">leave the activity</a>
     </div>
 </header>
 <main class="main">

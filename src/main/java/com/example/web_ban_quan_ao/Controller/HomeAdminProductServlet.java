@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "HomeAdminServlet", value = "/home_admin")
-public class HomeAdminServlet extends HttpServlet {
+@WebServlet(name = "HomeAdminServlet", value = "/home_admin_product")
+public class HomeAdminProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DAOProduct daoProduct = new DAOProduct();
 

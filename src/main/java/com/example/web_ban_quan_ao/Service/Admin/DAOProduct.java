@@ -115,18 +115,6 @@ public class DAOProduct implements IDAOProduct {
         }
     }
 
-    @Override
-    public void deleteProduct(int id) {
-        PreparedStatement preparedStatement = null;
-        try {
-            Connection connection = connectionDB.getConnection();
-            preparedStatement = connection.prepareStatement(delete_product);
-            preparedStatement.setInt(1, id);
-            preparedStatement.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public Product getProductById(int id) {
