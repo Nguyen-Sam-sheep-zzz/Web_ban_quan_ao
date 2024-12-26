@@ -80,17 +80,19 @@
                     <p>${detailProduct.descriptionProduct}</p>
 
                     <form class="d-flex justify-content-left" action="cartUserServlet" method="get">
+                        <div class="form-outline me-1" style="width: 100px;">
+                            <input type="number" value="1" class="form-control" name="quantityP"/>
+                        </div>
                         <input type="hidden" name="action" value="buy">
-                        <button class="btn btn-success ms-1" type="submit">
-                            <input type="hidden" name="cid" value="${detailProduct.idProduct}"/>
-                            Buy now
-                        </button>
+                        <%--                        <button class="btn btn-success ms-1" type="submit">--%>
+                        <%--                            <input type="hidden" name="cid" value="${detailProduct.idProduct}"/>--%>
+                        <%--                            Buy now--%>
+                        <%--                        </button>--%>
 
                         <button class="btn btn-primary ms-1" type="submit">
                             <input type="hidden" name="cid" value="${detailProduct.idProduct}"/>
                             Add to cart
                         </button>
-
                     </form>
                 </div>
             </div>

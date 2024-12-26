@@ -90,7 +90,7 @@
                                                         <i class="fas fa-minus"></i>
                                                     </button>
                                                     <label>
-                                                        <input id="quantityC" min="0" name="quantityC" value="1"
+                                                        <input id="quantityC" min="0" name="quantityC" value="${quantityP}"
                                                                type="number"
                                                                class="form-control form-control-sm"
                                                                style="width: 55px">

@@ -82,6 +82,8 @@ public class CartUserServlet extends HttpServlet {
 
     private void handleBuyAction(HttpServletResponse resp, HttpServletRequest req, List<Product> cart, HttpSession session) throws ServletException, IOException {
         String id = req.getParameter("cid");
+        String quantity = req.getParameter("quantityC");
+        System.out.println(quantity);
         Product p = detailProductImpl.getDetailProductById(Integer.parseInt(id));
 
         boolean found = false;
@@ -94,7 +96,7 @@ public class CartUserServlet extends HttpServlet {
         if (!found) {
             cart.add(p);
         }
-
+        session.setAttribute("quantityP", quantity);
         session.setAttribute("cart", cart);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/cart_user.jsp");
         dispatcher.forward(req, resp);
