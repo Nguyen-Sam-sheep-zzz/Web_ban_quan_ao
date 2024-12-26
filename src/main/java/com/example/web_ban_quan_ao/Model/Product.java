@@ -22,7 +22,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Product(String urlImage, String nameProduct, String descriptionProduct, double price, String status, String choice ,int idProduct, int idImage) {
+    public Product(String urlImage, String nameProduct, String descriptionProduct, double price, String status, String choice, int idProduct, int idImage) {
         this.urlImage = urlImage;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
@@ -33,7 +33,7 @@ public class Product {
         this.idImage = idImage;
     }
 
-    public Product( String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String choice) {
+    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String choice) {
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.size = size;
@@ -136,6 +136,7 @@ public class Product {
     public String getChoice() {
         return choice;
     }
+
     public void setChoice(String choice) {
         this.choice = choice;
     }
@@ -156,12 +157,14 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "idProduct=" + idProduct +
+                ", idImage=" + idImage +
                 ", nameProduct='" + nameProduct + '\'' +
                 ", descriptionProduct='" + descriptionProduct + '\'' +
                 ", size='" + size + '\'' +
                 ", price=" + price +
                 ", status='" + status + '\'' +
                 ", quantity=" + quantity +
+                ", urlImage='" + urlImage + '\'' +
                 '}';
     }
 

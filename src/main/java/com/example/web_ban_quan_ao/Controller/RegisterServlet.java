@@ -122,6 +122,7 @@ public class RegisterServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     private void registerView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/register.jsp");
         dispatcher.forward(req, resp);

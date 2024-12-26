@@ -2,7 +2,6 @@ package com.example.web_ban_quan_ao.Controller;
 
 import com.example.web_ban_quan_ao.Model.Product;
 import com.example.web_ban_quan_ao.Service.Admin.DAOProduct;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,7 @@ import java.util.Objects;
 @WebServlet(name = "HomeAdminServlet", value = "/home_admin_product")
 public class HomeAdminProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
     private DAOProduct daoProduct = new DAOProduct();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -138,6 +138,7 @@ public class HomeAdminProductServlet extends HttpServlet {
     private void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = new DAOProduct().getAllProduct();
         request.setAttribute("productList", products);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
         dispatcher.forward(request, response);
     }

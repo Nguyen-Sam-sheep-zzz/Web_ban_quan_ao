@@ -44,11 +44,11 @@
 <aside class="sidebar">
     <nav>
         <ul>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Products Management</a></li>
-            <li><a href="#">Users Management</a></li>
-            <li><a href="#">Orders Management</a></li>
-            <li><a href="#">Cart Management</a></li>
+<%--            <li><a href="#">Menu</a></li>--%>
+            <li><a href="home_admin_product?action=product_list">Products Management</a></li>
+<%--            <li><a href="#">Users Management</a></li>--%>
+<%--            <li><a href="#">Orders Management</a></li>--%>
+<%--            <li><a href="#">Cart Management</a></li>--%>
             <li><a href="home_admin_product?action=logout">Log out</a></li>
         </ul>
     </nav>

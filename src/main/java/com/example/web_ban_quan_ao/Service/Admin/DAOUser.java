@@ -95,6 +95,7 @@ public class DAOUser implements IDAOUser {
                 String name = resultSet.getString("name");
                 String role = resultSet.getString("role");
                 String status = resultSet.getString("status");
+
                 User user = new User(idUser, userName, password, name, role, status);
                 return user;
             }

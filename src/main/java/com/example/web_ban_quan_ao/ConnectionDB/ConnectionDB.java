@@ -9,6 +9,8 @@ public class ConnectionDB {
     private String jdbcUsername = "root";
     private String jdbcPassword = "khanhanhanmiu";
 
+//    private String jdbcPassword = "123456";
+
 
     public Connection getConnection() {
         Connection connection = null;
