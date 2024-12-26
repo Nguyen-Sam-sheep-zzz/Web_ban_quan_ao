@@ -9,6 +9,6 @@ public interface IDAO {
     void addProduct(Product product);
     void updateProduct(Product product, int id);
     void deleteProduct(int id);
-    Product getProductById(int id);
-    Product getProductByName(String name);
+    List<Product> getProductById(int id);
+    List<Product> getProductByName(String name);
 }

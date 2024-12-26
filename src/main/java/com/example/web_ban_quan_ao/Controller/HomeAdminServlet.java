@@ -34,6 +34,9 @@ public class HomeAdminServlet extends HttpServlet {
             case "add":
                 ShowAddProduct(request, response);
                 break;
+            case "edit":
+                ShowEditProduct(request, response);
+                break;
             default:
                 productList(request, response);
                 break;
@@ -53,6 +56,9 @@ public class HomeAdminServlet extends HttpServlet {
             case "add":
                 addProduct(request, response);
                 break;
+            case "search":
+                searchProduct(request, response);
+                break;
             case "logout":
                 request.getSession().invalidate();
                 dispatcher = request.getRequestDispatcher("/loginServlet");
@@ -61,10 +67,24 @@ public class HomeAdminServlet extends HttpServlet {
         }
     }
 
+    private void ShowEditProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("id", request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/edit_product.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String search = request.getParameter("search");
+        List<Product> products = dao.getProductByName(search);
+        request.setAttribute("productList", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("nameProduct");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int price = Integer.parseInt(request.getParameter("priceProduct"));
+        int quantity = Integer.parseInt(request.getParameter("quantityProduct"));
         String description = request.getParameter("descriptionProduct");
         String size = request.getParameter("size");
         String status = "";
@@ -73,8 +93,8 @@ public class HomeAdminServlet extends HttpServlet {
         } else {
             status = "Available";
         }
-        String image = request.getParameter("image");
-        String type = request.getParameter("type");
+        String image = request.getParameter("urlImage");
+        String type = request.getParameter("category");
         Product product = new Product(name, description, size, price, status, quantity, image, type);
         dao.addProduct(product);
         productList(request, response);

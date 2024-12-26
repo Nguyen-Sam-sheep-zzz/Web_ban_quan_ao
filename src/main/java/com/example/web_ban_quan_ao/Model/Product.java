@@ -2,16 +2,17 @@ package com.example.web_ban_quan_ao.Model;
 
 public class Product {
     private int idProduct;
+    private int idImage;
     private String nameProduct;
     private String descriptionProduct;
     private String size;
     private double price;
     private String status;
     private int quantity;
-    private String image;
-    private String type;
+    private String urlImage;
+    private String choice;
 
-    public Product(int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String type) {
+    public Product(int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
@@ -19,28 +20,50 @@ public class Product {
         this.price = price;
         this.status = status;
         this.quantity = quantity;
-        this.type = type;
     }
 
-    public Product( String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String type) {
+    public Product(String urlImage, String nameProduct, String descriptionProduct, double price, String status, String choice ,int idProduct, int idImage) {
+        this.urlImage = urlImage;
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.price = price;
+        this.status = status;
+        this.choice = choice;
+        this.idProduct = idProduct;
+        this.idImage = idImage;
+    }
+
+    public Product( String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String choice) {
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.size = size;
         this.price = price;
         this.status = status;
         this.quantity = quantity;
-        this.image = image;
-        this.type = type;
+        this.urlImage = image;
+        this.choice = choice;
     }
 
-    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String type) {
+    public Product(String urlImage, int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String category) {
+        this.urlImage = urlImage;
+        this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
         this.size = size;
         this.price = price;
         this.status = status;
         this.quantity = quantity;
-        this.type = type;
+        this.choice = category;
+    }
+
+    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String choice) {
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.choice = choice;
     }
 
     public Product() {
@@ -102,12 +125,31 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image;
+    public String getUrlImage() {
+        return urlImage;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.urlImage = image;
+    }
+
+    public String getChoice() {
+        return choice;
+    }
+    public void setChoice(String choice) {
+        this.choice = choice;
+    }
+
+    public int getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     @Override
