@@ -3,6 +3,9 @@
 <head>
     <title>Product</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
@@ -80,14 +83,12 @@
                     <p>${detailProduct.descriptionProduct}</p>
 
                     <form class="d-flex justify-content-left" action="cartUserServlet" method="get">
+
                         <div class="form-outline me-1" style="width: 100px;">
                             <input type="number" value="1" class="form-control" name="quantityP"/>
                         </div>
+
                         <input type="hidden" name="action" value="buy">
-                        <%--                        <button class="btn btn-success ms-1" type="submit">--%>
-                        <%--                            <input type="hidden" name="cid" value="${detailProduct.idProduct}"/>--%>
-                        <%--                            Buy now--%>
-                        <%--                        </button>--%>
 
                         <button class="btn btn-primary ms-1" type="submit">
                             <input type="hidden" name="cid" value="${detailProduct.idProduct}"/>

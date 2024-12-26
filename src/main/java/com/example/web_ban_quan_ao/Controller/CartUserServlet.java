@@ -82,7 +82,7 @@ public class CartUserServlet extends HttpServlet {
 
     private void handleBuyAction(HttpServletResponse resp, HttpServletRequest req, List<Product> cart, HttpSession session) throws ServletException, IOException {
         String id = req.getParameter("cid");
-        String quantity = req.getParameter("quantityC");
+        String quantity = req.getParameter("quantityP");
         System.out.println(quantity);
         Product p = detailProductImpl.getDetailProductById(Integer.parseInt(id));
 
