@@ -59,6 +59,9 @@ public class HomeAdminServlet extends HttpServlet {
             case "search":
                 searchProduct(request, response);
                 break;
+            case "edit":
+                editProduct(request, response);
+                break;
             case "logout":
                 request.getSession().invalidate();
                 dispatcher = request.getRequestDispatcher("/loginServlet");
@@ -67,8 +70,30 @@ public class HomeAdminServlet extends HttpServlet {
         }
     }
 
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("nameProduct");
+        int price = Integer.parseInt(request.getParameter("priceProduct"));
+        String urlImage = request.getParameter("urlImage");
+        int quantity = Integer.parseInt(request.getParameter("quantityProduct"));
+        String description = request.getParameter("descriptionProduct");
+        String size = request.getParameter("size");
+        String status = "";
+        if (quantity <= 0) {
+            status = "Out of stock";
+        } else {
+            status = "Available";
+        }
+        String type = request.getParameter("category");
+        Product product = new Product(urlImage, id, name, description, size, price, status, quantity, type);
+        dao.updateProduct(product);
+        productList(request, response);
+    }
+
     private void ShowEditProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("id", request.getParameter("id"));
+        Product product = dao.getProductById(Integer.parseInt(request.getParameter("id")));
+        System.out.println(product);
+        request.setAttribute("editProduct", product);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/edit_product.jsp");
         dispatcher.forward(request, response);
     }

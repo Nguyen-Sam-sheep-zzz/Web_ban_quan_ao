@@ -17,18 +17,21 @@ public class DAO implements IDAO {
             "ON products.idProduct = images.idProduct";
     private String add_product = "insert into products (nameProduct, productDescription, size, price, status, quantity, category) values (?, ?, ?, ?, ?, ?,?);";
     private String add_image = "insert into images (idProduct, link) values (?, ?);";
-    private String update_product = "update products set nameProduct = ?, productDescription = ?, size = ?, price = ?, status = ?, quantity = ? where idProduct = ?" +
-            "update images set link = ? where idProduct = ?";
+    private String update_product = "update products set nameProduct = ?, productDescription = ?, size = ?, price = ?, status = ?, quantity = ? where idProduct = ?";
+
+    private String update_product_image = "update images set link = ? where idProduct = ?";
     private String delete_product = "delete from products where idProduct = ?" +
             "delete from images where idProduct = ?";
-    private String get_all_product_by_id = "select * " +
-            "from web_ban_quan_ao.products" +
-            "INNER JOIN web_ban_quan_ao.images on products.idProduct = images.idProduct" +
-            " where idProduct like '%' ? '%'";
-    private String get_all_product_by_name = "select * " +
-            "from web_ban_quan_ao.products" +
-            "INNER JOIN web_ban_quan_ao.images on products.idProduct = images.idProduct" +
-            " where nameProduct like '%' ? '%'";
+    private String get_all_product_by_id = "SELECT products.*, images.link " +
+            "from web_ban_quan_ao.products " +
+            "LEFT JOIN web_ban_quan_ao.images " +
+            "ON products.idProduct = images.idProduct " +
+            "WHERE web_ban_quan_ao.products.idProduct = ?";
+    private String get_all_product_by_name = "SELECT products.*, images.link " +
+            "from web_ban_quan_ao.products " +
+            "LEFT JOIN web_ban_quan_ao.images " +
+            "on products.idProduct = images.idProduct " +
+            "WHERE web_ban_quan_ao.products.nameProduct like '%' ? '%'";
     private String Change_status_product = "update products set status = ? where idProduct = ?";
 
     @Override
@@ -57,19 +60,6 @@ public class DAO implements IDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return products;
-        }
-    }
-
-    private void changeStatusProduct(String status, int idProduct) {
-        PreparedStatement preparedStatement = null;
-        try {
-            Connection connection = connectionDB.getConnection();
-            preparedStatement = connection.prepareStatement(Change_status_product);
-            preparedStatement.setString(1, status);
-            preparedStatement.setInt(2, idProduct);
-            preparedStatement.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -103,7 +93,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public void updateProduct(Product product, int id) {
+    public void updateProduct(Product product) {
         PreparedStatement preparedStatement = null;
         try {
             Connection connection = connectionDB.getConnection();
@@ -114,9 +104,11 @@ public class DAO implements IDAO {
             preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.setString(5, product.getStatus());
             preparedStatement.setInt(6, product.getQuantity());
-            preparedStatement.setInt(7, id);
-            preparedStatement.setString(8, product.getUrlImage());
-            preparedStatement.setInt(9, id);
+            preparedStatement.setInt(7, product.getIdProduct());
+            preparedStatement.execute();
+            preparedStatement = connection.prepareStatement(update_product_image);
+            preparedStatement.setString(1, product.getUrlImage());
+            preparedStatement.setInt(2, product.getIdProduct());
             preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,16 +129,16 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public List<Product> getProductById(int id) {
-        List<Product> products = new ArrayList<>();
+    public Product getProductById(int id) {
+        Product product = null;
         PreparedStatement preparedStatement = null;
         try {
             Connection connection = connectionDB.getConnection();
             preparedStatement = connection.prepareStatement(get_all_product_by_id);
+            preparedStatement.setInt(1, id);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                int idProduct = resultSet.getInt("idProduct");
                 String nameProduct = resultSet.getString("nameProduct");
                 String descriptionProduct = resultSet.getString("productDescription");
                 String size = resultSet.getString("size");
@@ -155,13 +147,12 @@ public class DAO implements IDAO {
                 int quantity = resultSet.getInt("quantity");
                 String type = resultSet.getString("category");
                 String urlImage = resultSet.getString("link");
-                Product product = new Product(urlImage, idProduct, nameProduct, descriptionProduct, size, price, status, quantity, type);
-                products.add(product);
+                product = new Product(urlImage, id, nameProduct, descriptionProduct, size, price, status, quantity, type);
             }
-            return products;
+            return product;
         } catch (Exception e) {
             e.printStackTrace();
-            return products;
+            return product;
         }
     }
 

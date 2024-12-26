@@ -44,7 +44,7 @@ public class Product {
         this.choice = choice;
     }
 
-    public Product(String urlImage, int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String category) {
+    public Product(String urlImage, int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String choice) {
         this.urlImage = urlImage;
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -53,7 +53,7 @@ public class Product {
         this.price = price;
         this.status = status;
         this.quantity = quantity;
-        this.choice = category;
+        this.choice = choice;
     }
 
     public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String choice) {

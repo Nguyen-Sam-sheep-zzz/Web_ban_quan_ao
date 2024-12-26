@@ -20,6 +20,8 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             border: none;
+            margin-top: 25px;
+            margin-bottom: 25px;
         }
 
         .recent-orders a:hover {
@@ -31,71 +33,74 @@
     </style>
 </head>
 <body>
-<form action="home_admin" method="get">
-    <header class="header">
-        <h1>Admin Dashboard</h1>
-        <div class="add-product">
-            <a href="/home_admin?action=add">Add new Product</a>
-        </div>
-    </header>
 
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Products Management</a></li>
-                <li><a href="#">Users Management</a></li>
-                <li><a href="#">Orders Management</a></li>
-                <li><a href="#">Cart Management</a></li>
-                <li><a href="#">Options</a></li>
-            </ul>
-        </nav>
-    </aside>
+<header class="header">
+    <h1>Admin Dashboard</h1>
+    <div class="add-product">
+        <a href="/home_admin?action=add">Add new Product</a>
+    </div>
+</header>
 
-    <main class="main-content">
-        <div class="search-bar">
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Products Management</a></li>
+            <li><a href="#">Users Management</a></li>
+            <li><a href="#">Orders Management</a></li>
+            <li><a href="#">Cart Management</a></li>
+            <li><a href="/home_admin?action=logout">Log out</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="main-content">
+    <div class="search-bar">
+        <form action="home_admin?action=search" method="post">
             <input type="text" name="search" placeholder="Tìm kiếm..."/>
-            <button>Search</button>
-        </div>
-        <section class="recent-orders">
-            <h2>Đơn hàng gần đây</h2>
-            <table>
-                <thead>
+<%--            <a href="home_admin?action=search">--%>
+                <button>Search</button>
+<%--            </a>--%>
+        </form>
+    </div>
+    <section class="recent-orders">
+        <h2>Đơn hàng gần đây</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>size</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Quantity</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <c:forEach items="${productList}" var="product">
                 <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>size</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Quantity</th>
-                    <th>Type</th>
-                    <th>Actions</th>
+                    <td>${product.idProduct}</td>
+                    <td><img style="width: 60px; height: 80px" src="img/${product.urlImage}"></td>
+                    <td>${product.nameProduct}</td>
+                    <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.descriptionProduct}</td>
+                    <td>${product.size}</td>
+                    <td>${product.price}$</td>
+                    <td>${product.status}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.choice}</td>
+                    <td class="actions">
+                        <a href="/home_admin?action=edit&id=${product.idProduct}">
+                            Edit the product
+                        </a>
+                    </td>
                 </tr>
-                </thead>
-                <c:forEach items="${productList}" var="product">
-                    <tr>
-                        <td>${product.idProduct}</td>
-                        <td><img style="width: 60px; height: 80px" src="img/${product.urlImage}"></td>
-                        <td>${product.nameProduct}</td>
-                        <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.descriptionProduct}</td>
-                        <td>${product.size}</td>
-                        <td>${product.price}$</td>
-                        <td>${product.status}</td>
-                        <td>${product.quantity}</td>
-                        <td>${product.choice}</td>
-                        <td class="actions">
-                            <a href="/home_admin?action=edit&id=${product.idProduct}">
-                                Edit the product
-                            </a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </section>
-    </main>
-</form>
+            </c:forEach>
+        </table>
+    </section>
+</main>
 </body>
 <footer class="footer">
     <p>&copy; 2024 Admin SKT store</p>
