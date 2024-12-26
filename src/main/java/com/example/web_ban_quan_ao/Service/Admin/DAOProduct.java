@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAO implements IDAO {
+public class DAOProduct implements IDAOProduct {
     ConnectionDB connectionDB = new ConnectionDB();
     private String get_all_product = "SELECT products.*, images.link " +
             "FROM web_ban_quan_ao.products " +

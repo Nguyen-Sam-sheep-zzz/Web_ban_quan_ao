@@ -1,7 +1,7 @@
 package com.example.web_ban_quan_ao.Controller;
 
 import com.example.web_ban_quan_ao.Model.Product;
-import com.example.web_ban_quan_ao.Service.Admin.DAO;
+import com.example.web_ban_quan_ao.Service.Admin.DAOProduct;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "HomeAdminServlet", value = "/home_admin")
 public class HomeAdminServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private DAO dao = new DAO();
+    private DAOProduct daoProduct = new DAOProduct();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
@@ -86,12 +87,12 @@ public class HomeAdminServlet extends HttpServlet {
         }
         String type = request.getParameter("category");
         Product product = new Product(urlImage, id, name, description, size, price, status, quantity, type);
-        dao.updateProduct(product);
+        daoProduct.updateProduct(product);
         productList(request, response);
     }
 
     private void ShowEditProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Product product = dao.getProductById(Integer.parseInt(request.getParameter("id")));
+        Product product = daoProduct.getProductById(Integer.parseInt(request.getParameter("id")));
         System.out.println(product);
         request.setAttribute("editProduct", product);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/edit_product.jsp");
@@ -100,10 +101,14 @@ public class HomeAdminServlet extends HttpServlet {
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("search");
-        List<Product> products = dao.getProductByName(search);
-        request.setAttribute("productList", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
-        dispatcher.forward(request, response);
+        if (Objects.equals(search, "")) {
+            productList(request, response);
+        } else {
+            List<Product> products = daoProduct.getProductByName(search);
+            request.setAttribute("productList", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -121,7 +126,7 @@ public class HomeAdminServlet extends HttpServlet {
         String image = request.getParameter("urlImage");
         String type = request.getParameter("category");
         Product product = new Product(name, description, size, price, status, quantity, image, type);
-        dao.addProduct(product);
+        daoProduct.addProduct(product);
         productList(request, response);
     }
 
@@ -131,7 +136,7 @@ public class HomeAdminServlet extends HttpServlet {
     }
 
     private void productList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = new DAO().getAllProduct();
+        List<Product> products = new DAOProduct().getAllProduct();
         request.setAttribute("productList", products);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/home_admin.jsp");
         dispatcher.forward(request, response);
