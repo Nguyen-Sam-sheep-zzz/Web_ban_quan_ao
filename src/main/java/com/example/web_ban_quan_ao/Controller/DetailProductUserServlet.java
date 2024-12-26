@@ -1,7 +1,7 @@
 package com.example.web_ban_quan_ao.Controller;
 
 import com.example.web_ban_quan_ao.Model.Product;
-import com.example.web_ban_quan_ao.Service.Detail.DetailProductImpl;
+import com.example.web_ban_quan_ao.Service.DetailUser.DetailProductImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DetailProductServlet" , value = "/detailProductServlet")
-public class DetailProductServlet extends HttpServlet {
+@WebServlet(name = "DetailProductUserServlet" , value = "/detailProductUserServlet")
+public class DetailProductUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private DetailProductImpl detailProductImpl =new DetailProductImpl();
+    private DetailProductImpl detailProductImpl = new DetailProductImpl();
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/CSS/register.css">
+    <link rel="stylesheet" href="CSS/login.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-<section class="vh-100" style="background-color: #619A6D;">
+<section class="vh-100" style="background-color: #008f6d;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-7.5">
@@ -62,7 +62,7 @@
                                 </form>
                                 <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
                                         href="/loginServlet?action=register"
-                                        style="color: #1a1d40 ;">Register here</a></p>
+                                        style="color: #023217 ;">Register here</a></p>
                             </div>
                         </div>
                     </div>

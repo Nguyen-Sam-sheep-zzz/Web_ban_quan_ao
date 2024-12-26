@@ -31,6 +31,7 @@ public class HomeUserServlet extends HttpServlet {
     private void searchProductByName(String keyword, HttpServletRequest req, HttpServletResponse resp) {
         List<Product> products = homeUserImpl.searchProductByName(keyword);
         req.setAttribute("productList", products);
+        req.setAttribute("keyword", keyword);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_user.jsp");
         try {
             dispatcher.forward(req, resp);

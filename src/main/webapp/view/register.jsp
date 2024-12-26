@@ -2,12 +2,13 @@
 <html>
 <head>
     <title>Register</title>
-<%--    <link rel="stylesheet" href="CSS/register.css">--%>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
 </head>
 <body>
 <section class="vh-100 bg-image"
-         style="background-color: #619A6D;);">
+         style="background-color: #008f6d;">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -43,13 +44,13 @@
                                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                 </div>
 
-                                <div class="d-flex justify-content-center">
-                                    <button  type="submit" data-mdb-button-init
-                                             data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                <div class="pt-1 mb-4">
+                                    <button data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-dark btn-lg btn-block" type="submit">Register
+                                    </button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/registerServlet?action=login"
-                                                                                                        class="fw-bold text-body">Login here</a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/registerServlet?action=login" class="fw-bold text-body">Login here</a></p>
                             </form>
                         </div>
                     </div>

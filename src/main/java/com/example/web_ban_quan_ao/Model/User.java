@@ -8,13 +8,24 @@ public class User {
     private String role;
     private String status;
 
-    public User(int idUser, String userName, String password, String name, String role, String status) {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String address;
+
+    public User(int idUser, String userName, String password, String name, String role, String status , String address) {
         this.idUser = idUser;
         this.userName = userName;
         this.password = password;
         this.name = name;
         this.role = role;
         this.status = status;
+        this.address = address;
     }
 
     public User() {

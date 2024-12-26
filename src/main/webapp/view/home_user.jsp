@@ -4,11 +4,13 @@
 <head>
     <title>Home user</title>
     <link rel="stylesheet" href="CSS/home_user.css">
-<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/home_user.css">--%>
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/home_user.css">--%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white" >
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
     <!-- Container wrapper -->
     <div class="container">
         <!-- Toggle button -->
@@ -35,16 +37,16 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/homeUserServlet?action=All">Home</a>
                 </li>
-                <%--                <li class="nav-item">--%>
-                <%--                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/">About MDB</a>--%>
-                <%--                </li>--%>
-                <%--                <li class="nav-item">--%>
-                <%--                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/getting-started/installation/">Free--%>
-                <%--                        download</a>--%>
-                <%--                </li>--%>
-                <%--                <li class="nav-item">--%>
-                <%--                    <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/">Free tutorials</a>--%>
-                <%--                </li>--%>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/">About MDB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/getting-started/installation/">Free
+                        download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/">Free tutorials</a>
+                </li>
             </ul>
             <!-- Left links -->
         </div>
@@ -53,27 +55,28 @@
         <%--        <!-- Right elements -->--%>
         <div class="d-flex align-items-center">
             <!-- Icon -->
-            <a class="nav-link me-3" href="#">
+            <a class="nav-link me-3" href="/cartUserServlet">
                 <img src="img/cart.png" alt="error" height="30">
-<%--                <i class="fas fa-shopping-cart"></i>--%>
-<%--                <span class="badge rounded-pill badge-notification bg-danger">1</span>--%>
+                <%--                <i class="fas fa-shopping-cart"></i>--%>
+                <%--                <span class="badge rounded-pill badge-notification bg-danger">1</span>--%>
             </a>
 
-            <a class="nav-link me-3" href="#">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a class="nav-link me-3" href="#">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="/loginServlet?action=login"
-               target="_blank"> <i class="fab fa-github me-2"></i>Log out</a>
+            <%--            <a class="nav-link me-3" href="#">--%>
+            <%--                <i class="fab fa-facebook-f"></i>--%>
+            <%--            </a>--%>
+            <%--            <a class="nav-link me-3" href="#">--%>
+            <%--                <i class="fab fa-twitter"></i>--%>
+            <%--            </a>--%>
+            <a href="/loginServlet?action=login" style="margin-left: 20px"
+               target="_blank"> <i class="btn btn-dark btn-lg btn-block">Log out</i></a>
         </div>
         <!-- Right elements -->
     </div>
     <!-- Container wrapper -->
 </nav>
 <!-- carousel -->
-<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel" style="margin-top: 70px">
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel"
+     style="margin-top: 70px">
     <div class="carousel-indicators">
         <button
                 type="button"
@@ -115,13 +118,13 @@
     </div>
     <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
             data-mdb-slide="prev">
-        <%--        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
-        <%--        <span class="visually-hidden">Previous</span>--%>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
             data-mdb-slide="next">
-        <%--        <span class="carousel-control-next-icon" aria-hidden="true"> </span>--%>
-        <%--        <span class="visually-hidden">Next</span>--%>
+        <span class="carousel-control-next-icon" aria-hidden="true"> </span>
+        <span class="visually-hidden">Next</span>
     </button>
 </div>
 
@@ -153,7 +156,6 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <!-- Link -->
-
                         <li class="nav-item acitve">
                             <a class="nav-link text-white" href="/homeUserServlet?action=All">All items</a>
                         </li>
@@ -178,8 +180,10 @@
                     </ul>
 
                     <!-- Search -->
-                    <form action="/homeUserServlet" method="post" class="w-auto py-1" style="max-width: 12rem;margin-bottom: 0px;">
-                        <input name="search" type="search" class="form-control rounded-0" placeholder="Search with name" aria-label="Search">
+                    <form action="/homeUserServlet" method="post" class="w-auto py-1"
+                          style="max-width: 12rem;margin-bottom: 0px;">
+                        <input value="${keyword}" name="search" type="search" class="form-control rounded-0"
+                               placeholder="Search with name" aria-label="Search">
                     </form>
 
                 </div>
@@ -194,12 +198,12 @@
                 <div class="row">
                     <c:forEach var="o" items="${productList}">
                         <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card">
+                            <div class="card shadow-lg">
                                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                                      data-mdb-ripple-color="light">
                                     <img src="img/${o.urlImage}"
                                          class="w-100"/>
-                                    <a href="detailProductServlet?pid=${o.idProduct}">
+                                    <a href="detailProductUserServlet?pid=${o.idProduct}">
                                         <div class="mask">
                                             <div class="d-flex justify-content-start align-items-end h-100">
                                                 <h5><span class="badge bg-dark ms-2">NEW</span></h5>
@@ -212,11 +216,11 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-                                    <a href="" class="text-reset">
+                                    <a href="detailProductUserServlet?pid=${o.idProduct}" class="text-reset">
                                         <h5 class="card-title mb-2">${o.nameProduct}</h5>
                                     </a>
-                                    <a href="" class="text-reset ">
-                                        <p>${o.descriptionProduct}</p>
+                                    <a href="detailProductUserServlet?pid=${o.idProduct}" class="text-reset ">
+                                        <p>${o.choice}</p>
                                     </a>
                                     <h6 class="mb-3 price">${o.price}$</h6>
                                 </div>
@@ -228,31 +232,31 @@
         </section>
 
         <!-- Pagination -->
-<%--        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">--%>
-<%--            <ul class="pagination">--%>
-<%--                <li class="page-item disabled">--%>
-<%--                    <a class="page-link" href="#" aria-label="Previous">--%>
-<%--                        <span aria-hidden="true">&laquo;</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
-<%--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="#">4</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="#">5</a></li>--%>
-<%--                <li class="page-item">--%>
-<%--                    <a class="page-link" href="#" aria-label="Next">--%>
-<%--                        <span aria-hidden="true">&raquo;</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-<%--        </nav>--%>
+        <%--        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">--%>
+        <%--            <ul class="pagination">--%>
+        <%--                <li class="page-item disabled">--%>
+        <%--                    <a class="page-link" href="#" aria-label="Previous">--%>
+        <%--                        <span aria-hidden="true">&laquo;</span>--%>
+        <%--                    </a>--%>
+        <%--                </li>--%>
+        <%--                <li class="page-item active"><a class="page-link" href="#">1</a></li>--%>
+        <%--                <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+        <%--                <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+        <%--                <li class="page-item"><a class="page-link" href="#">4</a></li>--%>
+        <%--                <li class="page-item"><a class="page-link" href="#">5</a></li>--%>
+        <%--                <li class="page-item">--%>
+        <%--                    <a class="page-link" href="#" aria-label="Next">--%>
+        <%--                        <span aria-hidden="true">&raquo;</span>--%>
+        <%--                    </a>--%>
+        <%--                </li>--%>
+        <%--            </ul>--%>
+        <%--        </nav>--%>
         <!-- Pagination -->
     </div>
 </main>
 <!--Main layout-->
 
-<footer class="text-center text-white mt-4" style="background-color: #7d0810">
+<footer class="text-center text-white mt-4" style="background-color: #00614a">
 
     <%--    <hr class="text-dark">--%>
 

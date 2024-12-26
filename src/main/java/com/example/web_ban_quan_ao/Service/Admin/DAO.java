@@ -13,8 +13,12 @@ public class DAO implements IDAO {
     ConnectionDB connectionDB = new ConnectionDB();
     private String get_all_product = "select * from web_ban_quan_ao.products";
     private String add_product = "insert into products (nameProduct, productDescription, size, price, status, quantity) values (?, ?, ?, ?, ?, ?)";
+    private String add_img = "insert into images (link, idProduct) values (?, ?)";
+    private String update_img = "update images set link = ? where idProduct = ?";
     private String update_product = "update products set nameProduct = ?, productDescription = ?, size = ?, price = ?, status = ?, quantity = ? where idProduct = ?";
     private String delete_product = "delete from products where idProduct = ?";
+    private String get_product_by_id = "select * from products where idProduct = ?";
+    private String get_product_by_name = "select * from products where nameProduct LIKE '%' ? '%'";
 
     @Override
     public List<Product> getAllProduct() {
@@ -33,6 +37,7 @@ public class DAO implements IDAO {
                 double price = resultSet.getDouble("price");
                 String status = resultSet.getString("status");
                 int quantity = resultSet.getInt("quantity");
+                String type = resultSet.getString("category");
                 Product product = new Product(idProduct, nameProduct, descriptionProduct, size, price, status, quantity);
                 products.add(product);
             }
@@ -91,5 +96,15 @@ public class DAO implements IDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        return null;
+    }
+
+    @Override
+    public Product getProductByName(String name) {
+        return null;
     }
 }

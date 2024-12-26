@@ -30,6 +30,11 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String[] loginInfo = loginImpl.checkLoginDB(username, password);
 
+        if (username == null || password == null || loginInfo == null) {
+            req.setAttribute("errorMessage", "Không thể để trống các trường!");
+            req.getRequestDispatcher("view/login.jsp").forward(req, resp);
+        }
+
         if (loginInfo != null) {
             String role = loginInfo[0];
             String status = loginInfo[1];
@@ -85,5 +90,7 @@ public class LoginServlet extends HttpServlet {
     private void loginView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
         dispatcher.forward(req, resp);
+        HttpSession session = req.getSession();
+        session.invalidate();
     }
 }
