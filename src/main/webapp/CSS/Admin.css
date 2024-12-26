@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.header {
+    background-color: #4CAF50;
+    width: 100%;
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header .add-product a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: #ff5722;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header .add-product a:hover {
+    background-color: #e64a19;
+    color: white;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    height: calc(100% - 60px);
+    top: 74px;
+    left: 0;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #4CAF50;
+}
+
+.search-bar {
+    width: 528px;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    top: 20px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #333;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    width: 420px;
+    transition: width 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input:hover,
+.search-bar input:focus {
+    width: 500px;
+    font-size: 18px;
+}
+
+.search-bar button {
+    flex: 0 0 30%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-size: 16px;
+    width: 15%;
+}
+
+.search-bar:hover button,
+.search-bar input:focus + button {
+    display: none;
+}
+
+
+.main-content {
+    margin-left: 200px;
+    margin-top: 70px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f4f4f9;
+}
+
+.recent-orders h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.recent-orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.recent-orders table, th, td {
+    border: 1px solid #ddd;
+}
+
+.recent-orders th, .recent-orders td {
+    padding: 10px;
+    text-align: center;
+}
+
+.recent-orders th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.recent-orders tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.recent-orders tr:hover {
+    background-color: #ddd;
+}
+
+.recent-orders .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
