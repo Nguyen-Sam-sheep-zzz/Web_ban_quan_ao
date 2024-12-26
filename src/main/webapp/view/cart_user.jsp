@@ -31,18 +31,20 @@
                     <a class="nav-link" href="/homeUserServlet?action=All">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/">About MDB</a>
+                    <a class="nav-link" href="/homeUserServlet?action=Shirts">Shirts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/docs/standard/getting-started/installation/">Free
-                        download</a>
+                    <a class="nav-link" href="/homeUserServlet?action=Pants">Pants
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/">Free tutorials</a>
+                    <a class="nav-link" href="/homeUserServlet?action=Outwears">Outwears</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/homeUserServlet?action=Accessories">Accessories</a>
                 </li>
             </ul>
         </div>
-
         <div class="d-flex align-items-center">
             <a class="nav-link me-3" href="/cartUserServlet">
                 <img src="img/cart.png" alt="error" height="30">
@@ -68,71 +70,75 @@
                                     </div>
                                     <hr class="my-4">
                                     <div class="product-list"
-                                         style="max-height: 420px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; margin-right: -20px;">
-                                        <form action="cartUserServlet" method="post">
-                                            <c:forEach var="o" items="${cart}">
-                                                <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                                        <img src="/img/${o.urlImage}" class="img-fluid rounded-3"
-                                                             alt="Cotton T-shirt"/>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                                        <h6 class="text-muted">${o.choice}</h6>
-                                                        <h6 class="mb-0">${o.nameProduct}</h6>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex"
-                                                         style="padding-left: 0px;">
-                                                        <input type="hidden" name="action" value="delete">
-                                                        <button id="reloadButton1" type="submit"
-                                                                data-mdb-button-init="" data-mdb-ripple-init=""
-                                                                class="btn btn-link px-1"
-                                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                            <i class="fas fa-minus"></i>
-                                                        </button>
-                                                        <label>
-                                                            <input id="quantityC" min="0" name="quantityC" value="1"
-                                                                   type="number"
-                                                                   class="form-control form-control-sm"
-                                                                   style="width: 55px">
-                                                            <input type="hidden" name="productId"
-                                                                   value="${o.idProduct}">
-                                                        </label>
-                                                        <button id="reloadButton" type="submit"
-                                                                data-mdb-button-init="" data-mdb-ripple-init=""
-                                                                class="btn btn-link px-1"
-                                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="col-md-3 col-lg-2 col-xl-1">
-                                                        <select data-mdb-select-init=""
-                                                                class="form-control form-control-sm"
-                                                                style="width: 50px; margin-left: 5px"
-                                                                autocompleted="">
-                                                            <option selected="">Size</option>
-                                                            <option value="S">S</option>
-                                                            <option value="M">M</option>
-                                                            <option value="L">L</option>
-                                                            <option value="XL">XL</option>
-                                                            <option value="XXL">XXL</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3 col-lg-2 col-xl-2"
-                                                         style="margin-left: 25px;">
-                                                        <h6 class="mb-0" data-price-id="${o.idProduct}"
-                                                            data-unit-price="${o.price}">$ ${o.price}</h6>
-                                                    </div>
-                                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                        <button type="submit" style="border: none; background: none; padding: 0; outline: none;">
-                                                            <input type="hidden" name="deleteP" value="${o.idProduct}">
-                                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                                        </button>
-                                                    </div>
+                                         style="max-height: 380px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; margin-right: -20px;">
+                                        <c:forEach var="o" items="${cart}">
+                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                                    <img src="/img/${o.urlImage}" class="img-fluid rounded-3"
+                                                         alt="Cotton T-shirt"/>
                                                 </div>
-                                                <hr class="my-4">
-                                            </c:forEach>
-                                        </form>
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted">${o.choice}</h6>
+                                                    <h6 class="mb-0">${o.nameProduct}</h6>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex"
+                                                     style="padding-left: 0px;">
+                                                    <button id="reloadButton1"
+                                                            data-mdb-button-init="" data-mdb-ripple-init=""
+                                                            class="btn btn-link px-1"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <label>
+                                                        <input id="quantityC" min="0" name="quantityC" value="1"
+                                                               type="number"
+                                                               class="form-control form-control-sm"
+                                                               style="width: 55px">
+                                                        <input type="hidden" name="productId"
+                                                               value="${o.idProduct}">
+                                                    </label>
+                                                    <button id="reloadButton"
+                                                            data-mdb-button-init="" data-mdb-ripple-init=""
+                                                            class="btn btn-link px-1"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-md-3 col-lg-2 col-xl-1">
+                                                    <select data-mdb-select-init=""
+                                                            class="form-control form-control-sm"
+                                                            style="width: 50px; margin-left: 5px"
+                                                            autocompleted="">
+                                                        <option selected="">Size</option>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                        <option value="XXL">XXL</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2"
+                                                     style="margin-left: 25px;">
+                                                    <h6 class="mb-0" data-price-id="${o.idProduct}"
+                                                        data-unit-price="${o.price}">$ ${o.price}</h6>
+                                                </div>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                    <form action="cartUserServlet" method="post"
+                                                          style="display: inline;">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <button type="submit"
+                                                                style="border: none; background: none; padding: 0; outline: none;">
+                                                            <input type="hidden" name="deleteP" value="${o.idProduct}">
+                                                            <a href="" class="text-muted"><i
+                                                                    class="fas fa-times"></i></a>
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                            <hr class="my-4">
+                                        </c:forEach>
                                     </div>
                                     <div class="pt-5">
                                         <h6 class="mb-0"><a href="/homeUserServlet?action=All" class="text-body"><i
@@ -178,7 +184,7 @@
 
                                     <button type="button" data-mdb-button-init data-mdb-ripple-init
                                             class="btn btn-dark btn-block btn-lg"
-                                            data-mdb-ripple-color="dark">Register
+                                            data-mdb-ripple-color="dark">Buy now
                                     </button>
                                 </div>
                             </div>

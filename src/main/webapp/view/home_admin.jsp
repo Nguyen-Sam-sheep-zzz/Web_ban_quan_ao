@@ -7,67 +7,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="CSS/Admin.css">
+    <style>
+        .recent-orders a {
+            background-color: #f44336;
+            color: #f2f2f2;
+            padding: 10px 15px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: none;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .recent-orders a:hover {
+            border-color: #4CAF50;
+            color: white;
+            background-color: #4CAF50;
+        }
+
+    </style>
 </head>
 <body>
-<form action="home_admin" method="get">
-    <header class="header">
-        <h1>Admin Dashboard</h1>
-        <div class="logout">
-            <a href="/home_admin?action=logout">Log out</a>
-        </div>
-    </header>
 
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Quản lý sản phẩm</a></li>
-                <li><a href="#">Quản lý đơn hàng</a></li>
-                <li><a href="#">Quản lý khách hàng</a></li>
-                <li><a href="#">Thống kê doanh thu</a></li>
-                <li><a href="#">Cài đặt</a></li>
-            </ul>
-        </nav>
-    </aside>
+<header class="header">
+    <h1>Admin Dashboard</h1>
+    <div class="add-product">
+        <a href="/home_admin?action=add">Add new Product</a>
+    </div>
+</header>
 
-    <main class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm..." />
-            <button>Tìm kiếm</button>
-        </div>
-        <section class="recent-orders">
-            <h2>Đơn hàng gần đây</h2>
-            <table>
-                <thead>
+<aside class="sidebar">
+    <nav>
+        <ul>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Products Management</a></li>
+            <li><a href="#">Users Management</a></li>
+            <li><a href="#">Orders Management</a></li>
+            <li><a href="#">Cart Management</a></li>
+            <li><a href="/home_admin?action=logout">Log out</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="main-content">
+    <div class="search-bar">
+        <form action="home_admin?action=search" method="post">
+            <input type="text" name="search" placeholder="Tìm kiếm..."/>
+<%--            <a href="home_admin?action=search">--%>
+                <button>Search</button>
+<%--            </a>--%>
+        </form>
+    </div>
+    <section class="recent-orders">
+        <h2>Đơn hàng gần đây</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>size</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Quantity</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <c:forEach items="${productList}" var="product">
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>size</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Quantity</th>
+                    <td>${product.idProduct}</td>
+                    <td><img style="width: 60px; height: 80px" src="img/${product.urlImage}"></td>
+                    <td>${product.nameProduct}</td>
+                    <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.descriptionProduct}</td>
+                    <td>${product.size}</td>
+                    <td>${product.price}$</td>
+                    <td>${product.status}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.choice}</td>
+                    <td class="actions">
+                        <a href="/home_admin?action=edit&id=${product.idProduct}">
+                            Edit the product
+                        </a>
+                    </td>
                 </tr>
-                </thead>
-
-                <c:forEach items="${productList}" var="product">
-                    <tr>
-                        <td>${product.idProduct}</td>
-                        <td>${product.nameProduct}</td>
-                        <td>${product.descriptionProduct}</td>
-                        <td>${product.size}</td>
-                        <td>${product.price}</td>
-                        <td>${product.status}</td>
-                        <td>${product.quantity}</td>
-                    </tr>
-                </c:forEach>
-
-            </table>
-        </section>
-    </main>
-</form>
+            </c:forEach>
+        </table>
+    </section>
+</main>
+</body>
 <footer class="footer">
     <p>&copy; 2024 Admin SKT store</p>
 </footer>
-</body>
+<style>
+</style>
 </html>

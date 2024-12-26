@@ -12,14 +12,6 @@ public class Product {
     private String urlImage;
     private String choice;
 
-    public String getChoice() {
-        return choice;
-    }
-
-    public void setChoice(String choice) {
-        this.choice = choice;
-    }
-
     public Product(int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -30,23 +22,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getIdImage() {
-        return idImage;
-    }
-
-    public void setIdImage(int idImage) {
-        this.idImage = idImage;
-    }
-
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
-    public Product(String urlImage, String nameProduct, String descriptionProduct, double price, String status, String choice ,int idProduct, int idImage) {
+    public Product(String urlImage, String nameProduct, String descriptionProduct, double price, String status, String choice, int idProduct, int idImage) {
         this.urlImage = urlImage;
         this.nameProduct = nameProduct;
         this.descriptionProduct = descriptionProduct;
@@ -55,6 +31,39 @@ public class Product {
         this.choice = choice;
         this.idProduct = idProduct;
         this.idImage = idImage;
+    }
+
+    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String image, String choice) {
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.urlImage = image;
+        this.choice = choice;
+    }
+
+    public Product(String urlImage, int idProduct, String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String choice) {
+        this.urlImage = urlImage;
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.choice = choice;
+    }
+
+    public Product(String nameProduct, String descriptionProduct, String size, double price, String status, int quantity, String choice) {
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.size = size;
+        this.price = price;
+        this.status = status;
+        this.quantity = quantity;
+        this.choice = choice;
     }
 
     public Product() {
@@ -116,6 +125,34 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setImage(String image) {
+        this.urlImage = image;
+    }
+
+    public String getChoice() {
+        return choice;
+    }
+
+    public void setChoice(String choice) {
+        this.choice = choice;
+    }
+
+    public int getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -130,4 +167,6 @@ public class Product {
                 ", urlImage='" + urlImage + '\'' +
                 '}';
     }
+
+
 }

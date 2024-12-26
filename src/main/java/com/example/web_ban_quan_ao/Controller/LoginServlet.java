@@ -30,8 +30,8 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String[] loginInfo = loginImpl.checkLoginDB(username, password);
 
-        if (username == null || password == null || loginInfo == null) {
-            req.setAttribute("errorMessage", "Không thể để trống các trường!");
+        if (username.isEmpty() || password.isEmpty()) {
+            req.setAttribute("errorMessage", "Fields cannot be left blank!");
             req.getRequestDispatcher("view/login.jsp").forward(req, resp);
         }
 
@@ -44,16 +44,16 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect("/homeAdminServlet");
+                    resp.sendRedirect("/home_admin");
                 } else if (role.equalsIgnoreCase("user")) {
                     resp.sendRedirect("/homeUserServlet");
-                } else {
-                    req.setAttribute("errorMessage", "Tài khoản bị khóa!");
-                    req.getRequestDispatcher("view/login.jsp").forward(req, resp);
                 }
+            } else {
+                req.setAttribute("errorMessage", "Account locked!");
+                req.getRequestDispatcher("view/login.jsp").forward(req, resp);
             }
         } else {
-            req.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu, vui lòng đăng nhập lại!");
+            req.setAttribute("errorMessage", "Wrong username or password, please log in again!");
             req.getRequestDispatcher("view/login.jsp").forward(req, resp);
         }
     }

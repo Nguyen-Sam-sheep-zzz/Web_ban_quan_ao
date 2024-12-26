@@ -73,6 +73,7 @@ public class CartUserServlet extends HttpServlet {
 
                 handleBuyAction(resp, req, cart, session);
                 break;
+
             default:
                 RequestDispatcher dispatcher = req.getRequestDispatcher("view/cart_user.jsp");
                 dispatcher.forward(req, resp);
