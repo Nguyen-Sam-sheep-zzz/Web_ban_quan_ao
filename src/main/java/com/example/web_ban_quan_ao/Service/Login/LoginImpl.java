@@ -1,5 +1,6 @@
 package com.example.web_ban_quan_ao.Service.Login;
 
+import com.example.web_ban_quan_ao.ConnectionDB.ConnectionDB;
 import com.example.web_ban_quan_ao.Service.ConnectDB;
 
 import java.sql.*;
@@ -11,11 +12,13 @@ public class LoginImpl implements LoginService {
     public LoginImpl() {
 
     }
-    private ConnectDB connectDB = new ConnectDB();
+
+    private ConnectionDB connectDB = new ConnectionDB();
 
     @Override
     public String[] checkLoginDB(String username, String password) {
         Connection connection = connectDB.getConnection();
+        System.out.println(connection);
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(loginCheck);

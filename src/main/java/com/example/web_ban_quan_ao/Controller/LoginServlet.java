@@ -30,6 +30,11 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String[] loginInfo = loginImpl.checkLoginDB(username, password);
 
+        if (username.isEmpty() || password.isEmpty()) {
+            req.setAttribute("errorMessage", "Fields cannot be left blank!");
+            req.getRequestDispatcher("view/login.jsp").forward(req, resp);
+        }
+
         if (loginInfo != null) {
             String role = loginInfo[0];
             String status = loginInfo[1];
@@ -39,18 +44,16 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_admin.jsp");
-                    dispatcher.forward(req, resp);
+                    resp.sendRedirect("/home_admin_product");
                 } else if (role.equalsIgnoreCase("user")) {
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("view/home_user.jsp");
-                    dispatcher.forward(req, resp);
-                } else {
-                    req.setAttribute("errorMessage", "Tài khoản bị khóa!");
-                    req.getRequestDispatcher("view/login.jsp").forward(req, resp);
+                    resp.sendRedirect("/homeUserServlet");
                 }
+            } else {
+                req.setAttribute("errorMessage", "Account locked!");
+                req.getRequestDispatcher("view/login.jsp").forward(req, resp);
             }
         } else {
-            req.setAttribute("errorMessage", "Sai tên đăng nhập hoặc mật khẩu, vui lòng đăng nhập lại!");
+            req.setAttribute("errorMessage", "Wrong username or password, please log in again!");
             req.getRequestDispatcher("view/login.jsp").forward(req, resp);
         }
     }
@@ -64,9 +67,11 @@ public class LoginServlet extends HttpServlet {
 
         try {
             switch (action) {
+                case "login":
+                    loginView(req, resp);
+                    break;
                 case "register":
                     registerView(req, resp);
-                    System.out.println(action);
                     break;
                 default:
                     loginView(req, resp);
@@ -85,5 +90,7 @@ public class LoginServlet extends HttpServlet {
     private void loginView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
         dispatcher.forward(req, resp);
+        HttpSession session = req.getSession();
+        session.invalidate();
     }
 }
