@@ -57,12 +57,12 @@
 <main class="main-content">
     <div class="search-bar">
         <form action="home_admin_product?action=search" method="post">
-            <input type="text" name="search" placeholder="Tìm kiếm..."/>
+            <input type="text" name="search" placeholder="Search..."/>
             <button>Search</button>
         </form>
     </div>
     <section class="recent-orders">
-        <h2>Đơn hàng gần đây</h2>
+        <h2>All Products</h2>
         <table>
             <thead>
             <tr>
