@@ -10,4 +10,5 @@ public interface IDAOProduct {
     void updateProduct(Product product);
     Product getProductById(int id);
     List<Product> getProductByName(String name);
+    int countProduct();
 }

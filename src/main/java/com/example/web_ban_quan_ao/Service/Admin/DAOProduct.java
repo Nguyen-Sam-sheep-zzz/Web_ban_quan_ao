@@ -79,12 +79,9 @@ public class DAOProduct implements IDAOProduct {
             preparedStatement.setInt(6, product.getQuantity());
             preparedStatement.setString(7, product.getChoice());
             preparedStatement.execute();
-            generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                idProduct = generatedKeys.getInt(1);
-            }
+            int count = countProduct();
             preparedStatement = connection.prepareStatement(add_image);
-            preparedStatement.setInt(1, idProduct);
+            preparedStatement.setInt(1, count);
             preparedStatement.setString(2, product.getUrlImage());
             preparedStatement.execute();
         } catch (Exception e) {
@@ -171,6 +168,24 @@ public class DAOProduct implements IDAOProduct {
             e.printStackTrace();
         }
         return products;
+    }
+
+    @Override
+    public int countProduct() {
+        int count = 0;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection connection = connectionDB.getConnection();
+            preparedStatement = connection.prepareStatement(get_all_product);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
 }

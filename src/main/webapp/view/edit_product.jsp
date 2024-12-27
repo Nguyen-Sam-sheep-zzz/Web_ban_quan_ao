@@ -100,7 +100,7 @@
     }
 
     .main {
-        margin: 100px auto auto auto;
+        margin: 45px auto auto auto;
         padding: 20px;
         width: 40%;
         border-radius: 8px;
