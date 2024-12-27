@@ -39,11 +39,11 @@
                     </tr>
                     <tr>
                         <th>Price of product:</th>
-                        <td><input type="text" name="priceProduct" placeholder="Enter product price"></td>
+                        <td><input type="number" name="priceProduct" placeholder="Enter product price"></td>
                     </tr>
                     <tr>
                         <th>Quantity:</th>
-                        <td><input type="text" name="quantityProduct" placeholder="Enter product quantity"></td>
+                        <td><input type="number" name="quantityProduct" placeholder="Enter product quantity"></td>
                     </tr>
                     <tr>
                         <th>Size of product:</th>

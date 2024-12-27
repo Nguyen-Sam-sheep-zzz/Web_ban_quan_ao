@@ -41,11 +41,11 @@
                     </tr>
                     <tr>
                         <th>Price of product:</th>
-                        <td><input type="text" name="priceProduct" placeholder="${editProduct.price}"></td>
+                        <td><input type="number" name="priceProduct" placeholder="${editProduct.price}"></td>
                     </tr>
                     <tr>
                         <th>Quantity:</th>
-                        <td><input type="text" name="quantityProduct" placeholder="${editProduct.quantity}">
+                        <td><input type="number" name="quantityProduct" placeholder="${editProduct.quantity}">
                         </td>
                     </tr>
                     <tr>
